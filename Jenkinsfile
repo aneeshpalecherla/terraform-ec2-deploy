@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/aneeshpalecherla/terraform-ec2-deploy.git'
+                git branch: 'main', url: 'https://github.com/aneeshpalecherla/terraform-ec2-deploy.git'
             }
         }
         stage('Terraform Init') {
