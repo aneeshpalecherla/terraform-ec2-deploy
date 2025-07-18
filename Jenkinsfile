@@ -1,5 +1,9 @@
-pipeline {
+ppipeline {
     agent any
+
+    environment {
+        TF_VAR_env = 'dev'
+    }
 
     stages {
         stage('Checkout') {
@@ -27,3 +31,4 @@ pipeline {
         }
     }
 }
+
