@@ -1,12 +1,30 @@
-@"
 pipeline {
     agent any
+
     stages {
-        stage('Build') {
+        stage('Clone Repo') {
             steps {
-                echo 'Building...'
+                echo 'Cloning repository...'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                sh 'terraform plan'
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                input 'Approve to Apply?'
+                sh 'terraform apply -auto-approve'
             }
         }
     }
 }
-"@ | Out-File -FilePath C:\Users\Aneesh\terraform-ec2-deploy\Jenkinsfile -Encoding utf8
