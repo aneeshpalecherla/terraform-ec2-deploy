@@ -15,13 +15,13 @@ pipeline {
  
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                bat 'terraform init'
             }
         }
  
         stage('Terraform Plan') {
             steps {
-                sh '''
+                bat '''
                 terraform plan \
                     -var "aws_access_key=$AWS_ACCESS_KEY_ID" \
                     -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"
@@ -32,7 +32,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 input "Approve apply?"
-                sh '''
+                bat '''
                 terraform apply -auto-approve \
                     -var "aws_access_key=$AWS_ACCESS_KEY_ID" \
                     -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"
