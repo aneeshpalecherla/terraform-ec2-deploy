@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
-                echo 'Cloning repository...'
+                git url: 'https://github.com/aneeshpalecherla/terraform-ec2-deploy.git', branch: 'main'
             }
         }
 
@@ -14,15 +14,8 @@ pipeline {
             }
         }
 
-        stage('Terraform Plan') {
-            steps {
-                sh 'terraform plan'
-            }
-        }
-
         stage('Terraform Apply') {
             steps {
-                input 'Approve to Apply?'
                 sh 'terraform apply -auto-approve'
             }
         }
