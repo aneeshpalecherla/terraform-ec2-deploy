@@ -1,4 +1,4 @@
-ppipeline {
+pipeline {
     agent any
 
     environment {
@@ -31,4 +31,3 @@ ppipeline {
         }
     }
 }
-
